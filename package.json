@@ -1,0 +1,14 @@
+{
+  "name": "journal-box",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "boost"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dev-boost": "^1.0.0"
+  }
+}
