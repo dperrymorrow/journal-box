@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "boost"
+    "dev": "boost",
+    "build": "boost build"
   },
   "author": "",
   "license": "ISC",
