@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dev-boost": "^1.0.0"
+    "dev-boost": "^1.0.1"
   }
 }
