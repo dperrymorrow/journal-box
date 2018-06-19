@@ -1,7 +1,5 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></head><body><form method="GET" action="https://www.dropbox.com/oauth2/authorize"><input type="hidden" name="client_id" value="irerc14heaj9q3e"><input type="hidden" name="response_type" value="token"><input id="redirect" type="hidden" name="redirect_uri" value="/success.html"><input type="submit" value="Get Token"></form><script type="module">import session from "./app/session.js";
-const redirect = document.getElementById('redirect');
-redirect.value = window.location.origin + redirect.value;
-
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></head><body><form method="GET" action="https://www.dropbox.com/oauth2/authorize"><input type="hidden" name="client_id" value="irerc14heaj9q3e"><input type="hidden" name="response_type" value="token"><input id="redirect" type="hidden" name="redirect_uri" value=""><input type="submit" value="Get Token"></form><script type="module">import session from "./app/session.js";
+document.getElementById('redirect').value = window.location.href.includes('github') ? 'https://dperrymorrow.github.io/journal-box/success.html' : 'http://localhost:8002/success.html';
 if (session.getSession()) {
   window.location.href = "/editor.html";
 }</script></body></html>
