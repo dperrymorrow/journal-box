@@ -14,9 +14,11 @@ export default {
     });
 
     localStorage.setItem(SESS_KEY, JSON.stringify(session));
+    window.location.href = "/editor.html";
   },
 
   destroy() {
     localStorage.clear();
+    window.location.href = "/";
   },
 };

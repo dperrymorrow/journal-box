@@ -19,7 +19,7 @@ export default {
 
   getters: {
     currentFile: (state, getters, rootState, rootGetters) =>
-      `${rootGetters["dates/slugFormat"]}.txt`,
+      `${rootGetters["dates/currentSlug"]}.txt`,
   },
 
   actions: {
@@ -37,7 +37,7 @@ export default {
         reader.readAsText(response.fileBlob);
       } catch (err) {
         console.error(err);
-        context.commit("setContent", `${context.rootGetters["dates/longDate"]}\n\n`);
+        context.commit("setContent", `${context.rootGetters["dates/currentLong"]}\n\n`);
         context.commit("setIsLoading", false);
       }
     },

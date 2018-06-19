@@ -1,7 +1,7 @@
 
 
 <template lang="pug">
-  .editor
+  .editor(:class="{shy: $store.state.ui.isShy}")
     textarea(v-model="content")
     action-bar
 

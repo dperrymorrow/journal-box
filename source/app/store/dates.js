@@ -5,18 +5,34 @@ export default {
   },
 
   mutations: {
-    setCurrentDate: (state, date) => (state.currentDate = date),
+    setCurrent(state, date) {
+      if (typeof date === "string") date = new Date(date);
+      state.currentDate = date;
+    },
     setToday: state => (state.currentDate = new Date()),
   },
 
   getters: {
-    slugFormat(state) {
-      return state.currentDate
-        .toLocaleDateString("en-us", { year: "numeric", month: "2-digit", day: "2-digit" })
-        .replace(/\//g, "-");
+    backSlug(state) {
+      const back = new Date(state.currentDate.getTime());
+      back.setDate(back.getDate() - 1);
+      return _dateToSlug(back);
     },
 
-    longDate(state) {
+    isToday(state) {
+      return state.currentDate.toDateString() === new Date().toDateString();
+    },
+
+    nextSlug(state, getters) {
+      if (getters.isToday) return null;
+      const next = new Date(state.currentDate.getTime());
+      next.setDate(next.getDate() + 1);
+      return _dateToSlug(next);
+    },
+
+    currentSlug: state => _dateToSlug(state.currentDate),
+
+    currentLong(state) {
       return state.currentDate.toLocaleDateString("en-us", {
         weekday: "long",
         year: "numeric",
@@ -26,3 +42,9 @@ export default {
     },
   },
 };
+
+function _dateToSlug(date) {
+  return date
+    .toLocaleDateString("en-us", { year: "numeric", month: "2-digit", day: "2-digit" })
+    .replace(/\//g, "-");
+}
