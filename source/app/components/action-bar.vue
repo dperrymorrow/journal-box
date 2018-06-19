@@ -1,14 +1,14 @@
 <template lang="pug">
   .action-bar
-    button(@click.prevent="back") {{ $store.getters['dates/backSlug'] }}
+    button(@click.prevent="back") <
     button(@click.prevent="today", v-if="!$store.getters['dates/isToday']") Today
 
     .btn-group
       button(@click.prevent="save") Save
       button(@click.prevent="logout") Logout
 
-    button(@click.prevent="$store.commit('ui/toggleShy')") Shy Mode
-    button(@click.prevent="next", v-if="!$store.getters['dates/isToday']") {{ $store.getters['dates/nextSlug'] }}
+    button(@click.prevent="$store.commit('ui/toggleShy')") Shy
+    button(@click.prevent="next", v-if="!$store.getters['dates/isToday']") >
 </template>
 
 <script>
