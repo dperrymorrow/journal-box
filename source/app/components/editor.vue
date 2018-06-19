@@ -3,35 +3,30 @@
 <template lang="pug">
   .editor
     textarea(v-model="content")
-    .action-bar
-      button(@click.prevent="save") Save
+    action-bar
 
 </template>
 
 <script>
+import actionBar from "./action-bar.js";
 
-  export default {
-    name: "editor",
+export default {
+  name: "Editor",
+  components: { actionBar },
 
-    async mounted() {
-      await this.$store.dispatch("loadCurrentFile");
+  computed: {
+    content: {
+      get() {
+        return this.$store.state.files.content;
+      },
+      set(content) {
+        this.$store.commit("files/setContent", content);
+      },
     },
+  },
 
-    computed: {
-      content: {
-        get () {
-          return this.$store.state.content;
-        },
-        set (content) {
-          this.$store.commit("setContent", content)
-        }
-      }
-    },
-
-    methods: {
-      save() {
-        this.$store.dispatch("saveCurrentFile");
-      }
-    }
-  }
+  async mounted() {
+    await this.$store.dispatch("files/loadCurrent");
+  },
+};
 </script>

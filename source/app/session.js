@@ -1,9 +1,6 @@
-
-
 const SESS_KEY = "journal-box-session";
 
 export default {
-
   getSession() {
     return JSON.parse(localStorage.getItem(SESS_KEY));
   },
@@ -19,4 +16,7 @@ export default {
     localStorage.setItem(SESS_KEY, JSON.stringify(session));
   },
 
-}
+  destroy() {
+    localStorage.clear();
+  },
+};
