@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dev-boost": "^1.0.1",
+    "dev-boost": "^1.0.2",
     "eslint": "^4.19.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.8.0",

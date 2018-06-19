@@ -1,0 +1,125 @@
+@import "https://unpkg.com/normalize.css@8.0.0/normalize.css";
+body,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  color: #4d4d4d;
+}
+* {
+  box-sizing: border-box;
+}
+.loader {
+  animation: slideLine 2s;
+  position: fixed;
+  background-color: #000;
+  top: 0;
+  left: 0;
+  z-index: 1003;
+  height: 5px;
+}
+.editor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #f1f1f1;
+}
+.editor.shy textarea {
+  color: rgba(77,77,77,0.01);
+  text-shadow: 0 0 16px #000;
+}
+.editor .action-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: rgba(241,241,241,0.5);
+  border-top: 1px solid #cacaca;
+  display: flex;
+  justify-content: space-between;
+}
+.editor .action-bar button {
+  color: #4d4d4d;
+  font-family: Times;
+  border: 1px solid #b8b8b8;
+  background-color: #f1f1f1;
+  font-size: 1em;
+  padding: 10px 15px;
+  border-radius: 0.2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.editor .action-bar button:hover {
+  border-color: #171717;
+  background-color: #fff;
+  color: #171717;
+}
+.editor .action-bar button:focus {
+  outline: none;
+  outline-color: transparent;
+  outline-style: none;
+}
+.editor textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 1.4em;
+  font-family: Times;
+  color: #4d4d4d;
+  padding: 30px 20%;
+  padding-bottom: 100px;
+  width: 100%;
+  outline: none;
+  line-height: 1.3em;
+  border: none;
+  background-color: #f1f1f1;
+  transition: text-shadow 0.2s ease;
+}
+@-moz-keyframes slideLine {
+  0% {
+    width: 0%;
+  }
+  30% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes slideLine {
+  0% {
+    width: 0%;
+  }
+  30% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-o-keyframes slideLine {
+  0% {
+    width: 0%;
+  }
+  30% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes slideLine {
+  0% {
+    width: 0%;
+  }
+  30% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
