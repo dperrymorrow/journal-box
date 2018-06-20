@@ -1,3 +1,4 @@
 {
+  "basePort": 8002,
   "buildDir": "docs/"
 }

@@ -17,5 +17,5 @@ html
       import session from "./app/session.js";
       document.getElementById('redirect').value = session.CONFIG.redirect;
       if (session.getSession()) {
-        window.location.href = session.CONFIG.editor;
+        window.location.href = "/editor.html";
       }
