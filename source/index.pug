@@ -15,7 +15,7 @@ html
 
     script(type="module").
       import session from "./app/session.js";
-      document.getElementById('redirect').value = window.location.href.includes('github') ? 'https://dperrymorrow.github.io/journal-box/success.html' : 'http://localhost:8002/success.html';
+      document.getElementById('redirect').value = session.CONFIG.redirect;
       if (session.getSession()) {
-        window.location.href = "/editor.html";
+        window.location.href = session.CONFIG.editor;
       }
