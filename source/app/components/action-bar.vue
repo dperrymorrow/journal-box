@@ -1,10 +1,10 @@
 <template lang="pug">
   .action-bar
-    .btn-group
-      button(@click.prevent="back")
-        i.fas.fa-angle-left
-      button(@click.prevent="showCalendar")
-        i.fas.fa-calendar-alt
+    //- .btn-group
+    button(@click.prevent="back")
+      i.fas.fa-angle-left
+    //- button(@click.prevent="showCalendar")
+    //-   i.fas.fa-calendar-alt
 
 
     .btn-group

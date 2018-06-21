@@ -1,50 +1,34 @@
+const slug = "MM-DD-YYYY";
+
 export default {
   namespaced: true,
   state: {
-    currentDate: new Date(),
+    currentDate: moment(),
   },
 
   mutations: {
-    setCurrent(state, date) {
-      if (typeof date === "string") date = new Date(date);
-      state.currentDate = date;
-    },
-    setToday: state => (state.currentDate = new Date()),
+    setCurrent: (state, date) => (state.currentDate = moment(date)),
+    setToday: state => (state.currentDate = moment()),
   },
 
   getters: {
-    backSlug(state) {
-      const back = new Date(state.currentDate.getTime());
-      back.setDate(back.getDate() - 1);
-      return _dateToSlug(back);
-    },
+    backSlug: state =>
+      state.currentDate
+        .clone()
+        .subtract(1, "days")
+        .format(slug),
 
-    isToday(state) {
-      return state.currentDate.toDateString() === new Date().toDateString();
-    },
+    isToday: state => state.currentDate.isSame(new Date(), "day"),
 
     nextSlug(state, getters) {
       if (getters.isToday) return null;
-      const next = new Date(state.currentDate.getTime());
-      next.setDate(next.getDate() + 1);
-      return _dateToSlug(next);
+      return state.currentDate
+        .clone()
+        .add(1, "days")
+        .format(slug);
     },
 
-    currentSlug: state => _dateToSlug(state.currentDate),
-
-    currentLong(state) {
-      return state.currentDate.toLocaleDateString("en-us", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    },
+    currentSlug: state => moment(state.currentDate).format(slug),
+    currentLong: state => state.currentDate.format("dddd, MMMM Do YYYY"),
   },
 };
-
-function _dateToSlug(date) {
-  return date
-    .toLocaleDateString("en-us", { year: "numeric", month: "2-digit", day: "2-digit" })
-    .replace(/\//g, "-");
-}

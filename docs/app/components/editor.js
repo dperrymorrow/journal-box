@@ -37,6 +37,7 @@ export default {
         this.secsWithoutInput++;
         if (this.secsWithoutInput > 30 && !this.$store.state.ui.isShy)
           this.$store.commit("ui/toggleShy");
+        else if (this.secsWithoutInput > 120) window.location.href = "http://google.com";
       }, 1000);
     },
     input() {
