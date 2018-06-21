@@ -2,42 +2,33 @@
 
 <template lang="pug">
   .editor(:class="{shy: $store.state.ui.isShy}", @mousemove="input")
-    textarea(v-model="content", @keydown="input")
-    action-bar
+    .textarea(@input="change", contenteditable="true") {{ foo }}
 
 </template>
 
 <script>
-import actionBar from "./action-bar.js";
-
 export default {
   name: "Editor",
-  components: { actionBar },
 
   data() {
     return {
+      foo: "",
       interval: null,
       secsWithoutInput: 0,
     };
   },
 
   computed: {
-    content: {
-      get() {
-        return this.$store.state.files.content;
-      },
-      set(content) {
-        this.$store.commit("files/setContent", content);
-      },
+    content() {
+      return this.$store.state.files.content;
     },
   },
 
-  async mounted() {
-    await this.$store.dispatch("files/loadCurrent");
-    this.watchForInactivity();
-  },
-
   methods: {
+    change(event) {
+      this.$store.commit("files/setContent", event.target.innerText);
+    },
+
     watchForInactivity() {
       if (this.interval) clearInterval(this.interval);
       this.interval = setInterval(() => {
@@ -49,7 +40,6 @@ export default {
     },
     input() {
       this.secsWithoutInput = 0;
-      this.watchForInactivity();
     },
   },
 };

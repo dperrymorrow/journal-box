@@ -8,14 +8,14 @@ export default {
 
   methods: {
     back() {
-      this.$store.commit("dates/setCurrent", this.$store.getters["dates/backSlug"]);
+      this.$store.commit("dates/setCurrentFromSlug", this.$store.getters["dates/backSlug"]);
       this.$store.dispatch("files/loadCurrent");
     },
 
     showCalendar() {},
 
     next() {
-      this.$store.commit("dates/setCurrent", this.$store.getters["dates/nextSlug"]);
+      this.$store.commit("dates/setCurrentFromSlug", this.$store.getters["dates/nextSlug"]);
       this.$store.dispatch("files/loadCurrent");
     },
 

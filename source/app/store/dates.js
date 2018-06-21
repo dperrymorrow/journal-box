@@ -7,7 +7,7 @@ export default {
   },
 
   mutations: {
-    setCurrent: (state, date) => (state.currentDate = moment(date)),
+    setCurrentFromSlug: (state, dateStr) => (state.currentDate = moment(dateStr, slug)),
     setToday: state => (state.currentDate = moment()),
   },
 
@@ -28,7 +28,7 @@ export default {
         .format(slug);
     },
 
-    currentSlug: state => moment(state.currentDate).format(slug),
+    currentSlug: state => state.currentDate.format(slug),
     currentLong: state => state.currentDate.format("dddd, MMMM Do YYYY"),
   },
 };

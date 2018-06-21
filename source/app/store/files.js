@@ -30,11 +30,15 @@ export default {
         const response = await inst.filesDownload({ path: `/${context.getters.currentFile}` });
 
         const reader = new FileReader();
-        reader.addEventListener("loadend", () => {
-          context.commit("setContent", atob(reader.result));
-          context.commit("setIsLoading", false);
+
+        return new Promise((resolve, reject) => {
+          reader.addEventListener("loadend", () => {
+            context.commit("setContent", atob(reader.result));
+            context.commit("setIsLoading", false);
+            resolve(context.state.content);
+          });
+          reader.readAsText(response.fileBlob);
         });
-        reader.readAsText(response.fileBlob);
       } catch (err) {
         console.error(err);
         context.commit("setContent", `${context.rootGetters["dates/currentLong"]}\n\n`);
