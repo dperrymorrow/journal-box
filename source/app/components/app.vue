@@ -2,7 +2,7 @@
 <template lang="pug">
   .journal-box-app
     .loader(v-if="$store.state.files.isLoading")
-    editor
+    router-view
     action-bar
 </template>
 

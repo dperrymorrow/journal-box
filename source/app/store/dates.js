@@ -18,6 +18,8 @@ export default {
         .subtract(1, "days")
         .format(slug),
 
+    todaySlug: state => moment().format(slug),
+
     isToday: state => state.currentDate.isSame(new Date(), "day"),
 
     nextSlug(state, getters) {

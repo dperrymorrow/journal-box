@@ -1,7 +1,10 @@
 <template lang="pug">
   .action-bar
     //- .btn-group
-    button(@click.prevent="back")
+    router-link(
+      tag="button",
+      :to="{ name: 'editor', params: { slug: $store.getters['dates/backSlug'] }}"
+    )
       i.fas.fa-angle-left
     //- button(@click.prevent="showCalendar")
     //-   i.fas.fa-calendar-alt
@@ -20,10 +23,19 @@
 
 
     .btn-group
-      button.icon(@click.prevent="today", v-if="!$store.getters['dates/isToday']")
+      router-link.icon(
+        tag="button",
+        v-if="!$store.getters['dates/isToday']",
+        :to="{ name: 'editor', params: { slug: $store.getters['dates/todaySlug'] }}"
+      )
         i.fas.fa-dot-circle
         | Today
-      button(@click.prevent="next", :disabled="$store.getters['dates/isToday']")
+
+      router-link(
+        tag="button",
+        :disabled="$store.getters['dates/isToday']",
+        :to="{ name: 'editor', params: { slug: $store.getters['dates/nextSlug'] }}"
+      )
         i.fas.fa-angle-right
 
 </template>

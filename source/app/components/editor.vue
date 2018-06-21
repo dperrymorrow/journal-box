@@ -2,7 +2,7 @@
 
 <template lang="pug">
   .editor(:class="{shy: $store.state.ui.isShy}", @mousemove="input")
-    .textarea(@input="change", contenteditable="true") {{ foo }}
+    .textarea(@input="change", contenteditable="true") {{ content }}
 
 </template>
 
@@ -10,21 +10,37 @@
 export default {
   name: "Editor",
 
+  props: {
+    slug: {
+      required: true,
+      type: String,
+    },
+  },
+
   data() {
     return {
-      foo: "",
+      content: "",
       interval: null,
       secsWithoutInput: 0,
     };
   },
 
-  computed: {
-    content() {
-      return this.$store.state.files.content;
+  watch: {
+    $route(to, from) {
+      if (to.name === "editor") this.startUp();
     },
   },
 
+  mounted() {
+    this.startUp();
+  },
+
   methods: {
+    async startUp() {
+      this.$store.commit("dates/setCurrentFromSlug", this.slug);
+      this.content = await this.$store.dispatch("files/loadCurrent");
+    },
+
     change(event) {
       this.$store.commit("files/setContent", event.target.innerText);
     },
