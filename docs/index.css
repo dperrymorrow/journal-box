@@ -4,6 +4,7 @@ html {
   padding: 0;
   margin: 0;
   height: 100%;
+  width: 100%;
   color: #333;
 }
 * {
@@ -16,33 +17,55 @@ html {
   top: 0;
   left: 0;
   z-index: 1003;
-  height: 5px;
+  height: 4px;
+}
+.journal-box-app {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
 }
 .editor {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
   background-color: #f1f1f1;
 }
-.editor.shy textarea {
+.editor.shy .textarea {
   color: rgba(51,51,51,0.01);
   text-shadow: 0 0 16px #808080;
 }
-.editor .action-bar {
+.editor .textarea {
+  white-space: pre-wrap;
+  width: 100%;
+  height: 100%;
+  font-size: 1.5em;
+  line-height: 1.38em;
+  letter-spacing: -0.01em;
+  font-family: Times;
+  color: #333;
+  padding: 30px 20%;
+  padding-top: 80px !important;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #f1f1f1;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.action-bar {
   position: fixed;
   left: 0;
-  bottom: 0;
+  top: 0;
   padding: 7.5px;
   width: 100%;
   background-color: rgba(241,241,241,0.7);
   display: flex;
   justify-content: space-between;
 }
-.editor .action-bar button {
+.action-bar button {
   color: #5c5c5c;
   font-family: Monaco, monospace;
   text-transform: uppercase;
@@ -54,53 +77,36 @@ html {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.editor .action-bar button:disabled {
+.action-bar button:disabled {
   cursor: not-allowed;
   opacity: 0.3;
 }
-.editor .action-bar button.icon i.fas {
+.action-bar button.icon i.fas {
   margin-right: 0.4em;
 }
-.editor .action-bar button:hover {
+.action-bar button:hover {
   background-color: #fff;
   color: #0f0f0f;
 }
-.editor .action-bar button:focus {
+.action-bar button:focus {
   outline: none;
   outline-color: transparent;
   outline-style: none;
 }
-.editor .action-bar .btn-group button:not(:first-child) {
+.action-bar .btn-group button:not(:first-child) {
   border-left: none;
   border-radius: 0;
 }
-.editor .action-bar .btn-group button:first-child {
+.action-bar .btn-group button:first-child {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.editor .action-bar .btn-group button:last-child {
+.action-bar .btn-group button:last-child {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-.editor textarea {
-  width: 100%;
-  height: 100%;
-  font-size: 1.5em;
-  line-height: 1.38em;
-  letter-spacing: -0.01em;
-  font-family: Times;
-  color: #333;
-  padding: 30px 20%;
-  padding-bottom: 100px;
-  width: 100%;
-  outline: none;
-  border: none;
-  background-color: #f1f1f1;
-  transition: text-shadow 0.3s ease-out;
-  transition: color 0.3s ease-out;
-}
 @media only screen and (max-device-width: 480px) {
-  .editor textarea {
+  .editor .textarea {
     padding: 30px;
   }
 }

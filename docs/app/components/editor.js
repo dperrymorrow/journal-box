@@ -1,36 +1,44 @@
-import actionBar from "./action-bar.js";
-
 export default {
   template: `
-  <div class="editor" :class="{shy: $store.state.ui.isShy}" @mousemove="input"><textarea v-model="content" @keydown="input"></textarea><action-bar></action-bar></div>`,
+  <div class="editor" :class="{shy: $store.state.ui.isShy}" @mousemove="input"><div class="textarea" @input="change" contenteditable="true">{{ content }}</div></div>`,
 
   name: "Editor",
-  components: { actionBar },
+
+  props: {
+    slug: {
+      required: true,
+      type: String,
+    },
+  },
 
   data() {
     return {
+      content: "",
       interval: null,
       secsWithoutInput: 0,
     };
   },
 
-  computed: {
-    content: {
-      get() {
-        return this.$store.state.files.content;
-      },
-      set(content) {
-        this.$store.commit("files/setContent", content);
-      },
+  watch: {
+    $route(to, from) {
+      if (to.name === "editor") this.startUp();
     },
   },
 
-  async mounted() {
-    await this.$store.dispatch("files/loadCurrent");
-    this.watchForInactivity();
+  mounted() {
+    this.startUp();
   },
 
   methods: {
+    async startUp() {
+      this.$store.commit("dates/setCurrentFromSlug", this.slug);
+      this.content = await this.$store.dispatch("files/loadCurrent");
+    },
+
+    change(event) {
+      this.$store.commit("files/setContent", event.target.innerText);
+    },
+
     watchForInactivity() {
       if (this.interval) clearInterval(this.interval);
       this.interval = setInterval(() => {
@@ -42,7 +50,6 @@ export default {
     },
     input() {
       this.secsWithoutInput = 0;
-      this.watchForInactivity();
     },
   },
 };

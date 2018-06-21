@@ -5,6 +5,10 @@ const environments = {
     origin: "localhost",
     redirect: "http://localhost:8002/success.html",
   },
+  localPhone: {
+    origin: "192.168.0.12",
+    redirect: "192.168.0.12:8002/success.html",
+  },
   production: {
     origin: "journal-box.com",
     redirect: "https://journal-box.com/success.html",
@@ -18,7 +22,9 @@ const CONFIG = environments[ENV];
 
 export default {
   getSession() {
-    return JSON.parse(localStorage.getItem(SESS_KEY));
+    return { access_token: "HxnFLP4MZ7kAAAAAAACwZvOz9fkk85Apc7CS1Yipp4kRS-TYQNqGlIUMKMKrHFiG" };
+
+    // JSON.parse(localStorage.getItem(SESS_KEY));
   },
 
   ENV,

@@ -1,14 +1,20 @@
-export default new Router({
+import editor from "./components/editor.js";
+
+export default new VueRouter({
   routes: [
     {
       name: "root",
       path: "/",
-      redirect: "projects",
+      component: editor,
+      props: {
+        slug: moment().format("MM-DD-YYYY"),
+      },
     },
     {
-      name: "projects",
-      path: "/projects",
-      component: ProjectIndex,
+      name: "editor",
+      path: "/edit/:slug",
+      component: editor,
+      props: true,
     },
   ],
 });

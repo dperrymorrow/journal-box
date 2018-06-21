@@ -1,4 +1,4 @@
-// import router from './router.js';
+import router from "./router.js";
 import store from "./store/index.js";
 import app from "./components/app.js";
 
@@ -10,6 +10,6 @@ export function init(el) {
     components: { app },
     template: `<app></app>`,
     store,
-    // router,
+    router,
   });
 }
