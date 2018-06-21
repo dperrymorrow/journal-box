@@ -22,9 +22,7 @@ const CONFIG = environments[ENV];
 
 export default {
   getSession() {
-    return { access_token: "HxnFLP4MZ7kAAAAAAACwZvOz9fkk85Apc7CS1Yipp4kRS-TYQNqGlIUMKMKrHFiG" };
-
-    // JSON.parse(localStorage.getItem(SESS_KEY));
+    return JSON.parse(localStorage.getItem(SESS_KEY));
   },
 
   ENV,

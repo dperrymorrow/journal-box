@@ -33,6 +33,7 @@ export default {
     async startUp() {
       this.$store.commit("dates/setCurrentFromSlug", this.slug);
       this.content = await this.$store.dispatch("files/loadCurrent");
+    this.watchForInactivity()
     },
 
     change(event) {
