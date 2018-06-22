@@ -1,32 +1,9 @@
-const SESS_KEY = "journal-box-session";
-
-const environments = {
-  local: {
-    origin: "localhost",
-    redirect: "http://localhost:8002/success.html",
-  },
-  localPhone: {
-    origin: "192.168.0.12",
-    redirect: "192.168.0.12:8002/success.html",
-  },
-  production: {
-    origin: "journal-box.com",
-    redirect: "https://journal-box.com/success.html",
-  },
-};
-
-const ENV = Object.keys(environments).find(key =>
-  window.location.href.includes(environments[key].origin)
-);
-const CONFIG = environments[ENV];
+import config from "./config.js";
 
 export default {
   getSession() {
     return JSON.parse(localStorage.getItem(SESS_KEY));
   },
-
-  ENV,
-  CONFIG,
 
   parseHash() {
     const params = new URLSearchParams(window.location.hash.substr(1));
@@ -36,7 +13,7 @@ export default {
       session[key] = params.get(key);
     });
 
-    localStorage.setItem(SESS_KEY, JSON.stringify(session));
+    localStorage.setItem(config.sessionKey, JSON.stringify(session));
     window.location.href = "/editor.html";
   },
 

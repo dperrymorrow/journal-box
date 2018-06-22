@@ -1,4 +1,5 @@
 import editor from "./components/editor.js";
+import config from "./config.js";
 
 export default new VueRouter({
   routes: [
@@ -7,7 +8,7 @@ export default new VueRouter({
       path: "/",
       component: editor,
       props: {
-        slug: moment().format("MM-DD-YYYY"),
+        slug: moment().format(config.slugFormat),
       },
     },
     {
