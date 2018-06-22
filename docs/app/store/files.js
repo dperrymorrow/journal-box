@@ -43,6 +43,7 @@ export default {
         console.error(err);
         context.commit("setContent", `${context.rootGetters["dates/currentLong"]}\n\n`);
         context.commit("setIsLoading", false);
+        return context.state.content;
       }
     },
 

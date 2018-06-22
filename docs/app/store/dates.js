@@ -1,4 +1,4 @@
-const slug = "MM-DD-YYYY";
+import config from "../config.js";
 
 export default {
   namespaced: true,
@@ -7,7 +7,8 @@ export default {
   },
 
   mutations: {
-    setCurrentFromSlug: (state, dateStr) => (state.currentDate = moment(dateStr, slug)),
+    setCurrentFromSlug: (state, dateStr) =>
+      (state.currentDate = moment(dateStr, config.slugFormat)),
     setToday: state => (state.currentDate = moment()),
   },
 
@@ -16,9 +17,9 @@ export default {
       state.currentDate
         .clone()
         .subtract(1, "days")
-        .format(slug),
+        .format(config.slugFormat),
 
-    todaySlug: state => moment().format(slug),
+    todaySlug: state => moment().format(config.slugFormat),
 
     isToday: state => state.currentDate.isSame(new Date(), "day"),
 
@@ -27,10 +28,10 @@ export default {
       return state.currentDate
         .clone()
         .add(1, "days")
-        .format(slug);
+        .format(config.slugFormat);
     },
 
-    currentSlug: state => state.currentDate.format(slug),
+    currentSlug: state => state.currentDate.format(config.slugFormat),
     currentLong: state => state.currentDate.format("dddd, MMMM Do YYYY"),
   },
 };

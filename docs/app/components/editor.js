@@ -1,6 +1,8 @@
+import config from "../config.js";
+
 export default {
   template: `
-  <div class="editor" :class="{shy: $store.state.ui.isShy}" @mousemove="input"><div class="textarea" @input="change" contenteditable="true">{{ content }}</div></div>`,
+  <div class="editor" :class="{shy: $store.state.ui.isShy}" @mousemove="input"><textarea class="textarea" v-model="content"></textarea></div>`,
 
   name: "Editor",
 
@@ -13,10 +15,20 @@ export default {
 
   data() {
     return {
-      content: "",
       interval: null,
       secsWithoutInput: 0,
     };
+  },
+
+  computed: {
+    content: {
+      get() {
+        return this.$store.state.files.content;
+      },
+      set(str) {
+        this.$store.commit("files/setContent", str);
+      },
+    },
   },
 
   watch: {
@@ -33,20 +45,14 @@ export default {
     async startUp() {
       this.$store.commit("dates/setCurrentFromSlug", this.slug);
       this.content = await this.$store.dispatch("files/loadCurrent");
-      this.watchForInactivity();
-    },
-
-    change(event) {
-      this.$store.commit("files/setContent", event.target.innerText);
+      if (config.guard) this.watchForInactivity();
     },
 
     watchForInactivity() {
       if (this.interval) clearInterval(this.interval);
       this.interval = setInterval(() => {
+        if (this.secsWithoutInput > 120) window.location.href = "http://google.com";
         this.secsWithoutInput++;
-        if (this.secsWithoutInput > 30 && !this.$store.state.ui.isShy)
-          this.$store.commit("ui/toggleShy");
-        else if (this.secsWithoutInput > 120) window.location.href = "http://google.com";
       }, 1000);
     },
     input() {
