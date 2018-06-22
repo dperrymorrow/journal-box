@@ -2,7 +2,7 @@
 
 <template lang="pug">
   .editor(:class="{shy: $store.state.ui.isShy}", @mousemove="input")
-    textarea.textarea(v-model="content")
+    textarea.textarea(ref="editor", v-model="content")
 
 </template>
 
@@ -51,6 +51,7 @@ export default {
     async startUp() {
       this.$store.commit("dates/setCurrentFromSlug", this.slug);
       this.content = await this.$store.dispatch("files/loadCurrent");
+      this.$refs.editor.scrollTop = 0;
       if (config.guard) this.watchForInactivity();
     },
 
