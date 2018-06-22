@@ -1,6 +1,7 @@
 const BASE = {
   sessionKey: "journal-box-session",
   slugFormat: "MM-DD-YYYY",
+  encrypt: true,
 };
 
 const environments = {

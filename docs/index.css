@@ -62,15 +62,21 @@ html {
   top: 0;
   padding: 7.5px;
   width: 100%;
+  background-color: #f1f1f1;
   display: flex;
   justify-content: space-between;
+}
+.action-bar .fixed-btns {
+  position: fixed;
+  bottom: 7.5px;
+  left: 7.5px;
 }
 .action-bar button {
   color: #5c5c5c;
   font-family: Monaco, monospace;
   text-transform: uppercase;
   font-size: 0.8em;
-  border: 1px solid #c2c2c2;
+  border: 1px solid #f1f1f1;
   background-color: #f1f1f1;
   padding: 7.5px 15px;
   border-radius: 3px;
@@ -84,7 +90,8 @@ html {
 .action-bar button.icon i.fas {
   margin-right: 0.4em;
 }
-.action-bar button:hover {
+.action-bar button:active {
+  border: 1px solid #c2c2c2;
   background-color: #fff;
   color: #0f0f0f;
 }
@@ -93,21 +100,15 @@ html {
   outline-color: transparent;
   outline-style: none;
 }
-.action-bar .btn-group button:not(:first-child) {
-  border-left: none;
-  border-radius: 0;
-}
-.action-bar .btn-group button:first-child {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.action-bar .btn-group button:last-child {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
 @media only screen and (max-device-width: 480px) {
   .editor .textarea {
     padding: 30px;
+  }
+  .action-bar button.icon i {
+    margin-right: none !important;
+  }
+  .action-bar button label {
+    display: none;
   }
 }
 @-moz-keyframes slideLine {
