@@ -17,5 +17,11 @@ html
     script(src="https://unpkg.com/dropbox@4.0.7/dist/Dropbox-sdk.min.js")
 
     script(type="module").
-      import { init } from "./app/index.js"
+      import { init } from "./app/index.js";
+      import session from "./app/session.js";
+
       init(document.getElementById('app'));
+
+      if (!session.getSession()) {
+        session.destroy();
+      }

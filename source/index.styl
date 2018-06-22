@@ -81,10 +81,15 @@ body, html
   top: 0
   padding: ($padding/4)
   width: 100%
-  // background-color: rgba($backgroundColor, .7)
+  background-color: $backgroundColor
   // border-top: 1px solid lighten($txtColor, 70%)
   display: flex
   justify-content: space-between
+
+  .fixed-btns
+    position: fixed
+    bottom: ($padding/4)
+    left: ($padding/4)
 
 
   button
@@ -92,7 +97,7 @@ body, html
     font-family: Monaco, monospace
     text-transform: uppercase
     font-size: .8em
-    border: 1px solid lighten($txtColor, 70%)
+    border: 1px solid $backgroundColor
     background-color: $backgroundColor
     padding: ($padding/4) ($padding/2)
     border-radius: $borderRadius
@@ -108,7 +113,8 @@ body, html
       i.fas
         margin-right: .4em
 
-    &:hover
+    &:active
+      border: 1px solid lighten($txtColor, 70%)
       background-color: white
       color: darken($txtColor, 70%)
 
@@ -117,25 +123,18 @@ body, html
       outline-color: transparent
       outline-style: none
 
-  .btn-group
-    button
-      &:not(:first-child)
-        border-left: none
-        border-radius: 0
-
-      &:first-child
-        border-top-right-radius: 0
-        border-bottom-right-radius: 0
-
-      &:last-child
-        border-top-right-radius: $borderRadius
-        border-bottom-right-radius: $borderRadius
-
 
 
 @media only screen and (max-device-width: 480px) {
     /* STYLES HERE */
   .editor .textarea {
     padding: $padding;
+  }
+  .action-bar button.icon i {
+    margin-right: none !important;
+  }
+
+  .action-bar button label {
+    display: none
   }
 }

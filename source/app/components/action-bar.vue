@@ -13,30 +13,31 @@
     .btn-group
       button.icon(@click.prevent="logout")
         i.fas.fa-user-alt-slash
+        label logout
 
       button(@click.prevent="$store.commit('ui/toggleShy')")
         i.fas.fa-eye(v-if="$store.state.ui.isShy")
         i.fas.fa-eye-slash(v-else)
 
-      button(@click.prevent="save")
+      button.icon(@click.prevent="save")
         i.fas.fa-save
+        label Save
 
-
-    .btn-group
       router-link.icon(
         tag="button",
         v-if="!$store.getters['dates/isToday']",
         :to="{ name: 'editor', params: { slug: $store.getters['dates/todaySlug'] }}"
       )
-        i.fas.fa-dot-circle
-        | Today
+        i.fas.fa-calendar-check
+        label Today
 
-      router-link(
-        tag="button",
-        :disabled="$store.getters['dates/isToday']",
-        :to="{ name: 'editor', params: { slug: $store.getters['dates/nextSlug'] }}"
-      )
-        i.fas.fa-angle-right
+
+    router-link(
+      tag="button",
+      :disabled="$store.getters['dates/isToday']",
+      :to="{ name: 'editor', params: { slug: $store.getters['dates/nextSlug'] }}"
+    )
+      i.fas.fa-angle-right
 
 </template>
 
