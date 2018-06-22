@@ -42,10 +42,10 @@ html {
   white-space: pre-wrap;
   width: 100%;
   height: 100vh;
-  font-size: 1.5em;
-  line-height: 1.38em;
-  letter-spacing: -0.01em;
-  font-family: Times;
+  font-size: 1.3em;
+  line-height: 1.78em;
+  letter-spacing: -0.007em;
+  font-family: 'Merriweather', Times, serif;
   color: #333;
   padding: 30px 20%;
   padding-top: 80px !important;
@@ -62,7 +62,7 @@ html {
   top: 0;
   padding: 7.5px;
   width: 100%;
-  background-color: #f1f1f1;
+  background-color: rgba(241,241,241,0.8);
   display: flex;
   justify-content: space-between;
 }
