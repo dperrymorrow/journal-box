@@ -11,7 +11,7 @@ const environments = {
     redirect: "http://localhost:8002/success.html",
   },
   production: {
-    guard: true,
+    guard: false,
     origin: "journal-box.com",
     redirect: "https://journal-box.com/success.html",
   },
