@@ -42,10 +42,10 @@ html {
   white-space: pre-wrap;
   width: 100%;
   height: 100vh;
-  font-size: 1.3em;
-  line-height: 1.78em;
+  font-size: 1.6em;
+  line-height: 1.38em;
   letter-spacing: -0.007em;
-  font-family: 'Merriweather', Times, serif;
+  font-family: Times, serif;
   color: #333;
   padding: 30px 20%;
   padding-top: 80px !important;
