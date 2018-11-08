@@ -6,12 +6,10 @@ const BASE = {
 
 const environments = {
   local: {
-    guard: false,
     origin: "localhost",
     redirect: "http://localhost:8002/success.html",
   },
   production: {
-    guard: false,
     origin: "journal-box.com",
     redirect: "https://journal-box.com/success.html",
   },

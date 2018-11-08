@@ -1,7 +1,7 @@
 
 <template lang="pug">
   .journal-box-app
-    .loader(v-if="$store.state.files.isLoading")
+    .loader(v-if="$store.state.isLoading")
     router-view
     action-bar
 </template>
