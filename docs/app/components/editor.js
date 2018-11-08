@@ -46,16 +46,8 @@ export default {
       this.$store.commit("dates/setCurrentFromSlug", this.slug);
       this.content = await this.$store.dispatch("files/loadCurrent");
       this.$refs.editor.scrollTop = 0;
-      if (config.guard) this.watchForInactivity();
     },
 
-    watchForInactivity() {
-      if (this.interval) clearInterval(this.interval);
-      this.interval = setInterval(() => {
-        if (this.secsWithoutInput > 120) window.location.href = "http://google.com";
-        this.secsWithoutInput++;
-      }, 1000);
-    },
     input() {
       this.secsWithoutInput = 0;
     },
